@@ -1,7 +1,6 @@
 
 export const enum ObjectIds {
-    Test,
-    Stickman,
     Player,
+    Scope,
     Background
 }

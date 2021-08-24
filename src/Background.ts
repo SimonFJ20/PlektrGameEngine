@@ -11,7 +11,7 @@ export class Background extends GameObject<ObjectIds> {
     public constructor (gameEngine: GameEngine) {
         super(gameEngine, ObjectIds.Background);
 
-        this.sprite = new Sprite('assets/background.png');
+        this.sprite = new Sprite('assets/backdrop.png');
     }
 
     public tick = (deltaT: number) => {
@@ -19,7 +19,7 @@ export class Background extends GameObject<ObjectIds> {
     };
 
     public render = (graphics: Graphics) => {
-        graphics.getContext().drawImage(this.sprite.getImage(), 0, 0);
+        graphics.getContext().drawImage(this.sprite.getImage(), 0, 0, 1920, 1080);
     };
 
 }
