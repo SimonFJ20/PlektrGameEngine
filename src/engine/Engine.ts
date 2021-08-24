@@ -1,6 +1,7 @@
 import { GameController, HandleableGameController } from "./GameController";
 import { GameLoop, GameLoopable } from "./GameLoop";
 import { Graphics } from "./Graphics";
+import { KeyInput } from "./KeyInput";
 import { ObjectHandler } from "./objectHandler";
 import { Vector2d } from "./Vector2d";
 
@@ -9,6 +10,7 @@ export class GameEngine implements GameLoopable {
     private graphics: Graphics;
     private objectHandler: ObjectHandler;
     private gameLoop: GameLoop;
+    private keyInput: KeyInput;
 
     private gameController!: HandleableGameController;
 
@@ -16,6 +18,7 @@ export class GameEngine implements GameLoopable {
         this.graphics = new Graphics(htmlCanvas, canvasSize.x, canvasSize.y);
         this.objectHandler = new ObjectHandler();
         this.gameLoop = new GameLoop(this);
+        this.keyInput = new KeyInput();
         
         this.gameLoop.logFpsToConsole = true;
     }
@@ -35,5 +38,6 @@ export class GameEngine implements GameLoopable {
     }
 
     public getObjectHander = () => this.objectHandler;
+    public getKeyInput = () => this.keyInput;
 
 }

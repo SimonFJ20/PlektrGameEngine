@@ -23,4 +23,6 @@ export abstract class GameObject<ObjectIdsEnum> implements HandleableGameObject 
         this.id = id;
     }
 
+    protected getEngine = () => this.gameEngine;
+
 }
