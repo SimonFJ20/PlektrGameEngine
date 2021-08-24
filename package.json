@@ -1,0 +1,19 @@
+{
+  "name": "plektr-game-engine",
+  "version": "1.0.0",
+  "main": "src/main.ts",
+  "scripts": {
+    "build": "webpack-cli --mode=production",
+    "dev": "webpack-cli --watch --mode=development"
+  },
+  "repository": "https://github.com/SimonFJ20/PlektrGameEngine",
+  "author": "SimonFJ20 <simonfromjakobsen@gmail.com>",
+  "license": "GPLv3",
+  "devDependencies": {
+    "glob": "^7.1.7",
+    "ts-loader": "^9.2.5",
+    "typescript": "^4.3.5",
+    "webpack": "^5.50.0",
+    "webpack-cli": "^4.8.0"
+  }
+}
