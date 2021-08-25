@@ -8,7 +8,7 @@
   },
   "repository": "https://github.com/SimonFJ20/PlektrGameEngine",
   "author": "SimonFJ20 <simonfromjakobsen@gmail.com>",
-  "license": "GPLv3",
+  "license": "GPL-3.0-or-later",
   "devDependencies": {
     "glob": "^7.1.7",
     "ts-loader": "^9.2.5",
