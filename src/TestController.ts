@@ -16,7 +16,7 @@ export class TestController extends GameController<ControllerIds> {
 
         this.background = new Background(this.gameEngine);
         this.player = new Player(this.gameEngine);
-        this.scope = new Scope(this.gameEngine);
+        this.scope = new Scope(this.gameEngine, this.player);
 
         this.add(this.background);
         this.add(this.player);

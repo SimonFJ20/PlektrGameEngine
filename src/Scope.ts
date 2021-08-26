@@ -2,20 +2,28 @@ import { Color } from "./engine/Color";
 import { GameEngine } from "./engine/Engine";
 import { GameObject } from "./engine/GameObject";
 import { Graphics } from "./engine/Graphics";
+import { PhysicsObject } from "./engine/PhysicsObject";
 import { Sprite } from "./engine/Sprite";
 import { Vector2d } from "./engine/Vector2d";
 import { ObjectIds } from "./ObjectIds";
+import { Player } from "./Player";
 
-export class Scope extends GameObject<ObjectIds> {
+export class Scope extends GameObject<ObjectIds> implements PhysicsObject {
 
-    private position: Vector2d;
+    private player: Player;
+
+    public position: Vector2d;
+    public velocity: Vector2d;
 
     private sprite: Sprite;
 
-    public constructor (gameEngine: GameEngine) {
+    public constructor (gameEngine: GameEngine, player: Player) {
         super(gameEngine, ObjectIds.Scope);
 
-        this.position = new Vector2d(640, 300);
+        this.player = player;
+
+        this.position = new Vector2d(0, 0);
+        this.velocity = new Vector2d(0, 0);
 
         this.sprite = new Sprite('assets/scope.png');
     }
@@ -27,25 +35,28 @@ export class Scope extends GameObject<ObjectIds> {
         
         const speed = 8;
 
-        if (keyInput.isPressed(74) && !keyInput.isPressed(76)) {
-            this.position.x -= speed;
-            if (this.position.x < 0)
-                this.position.x += speed;
-        } else if (keyInput.isPressed(76) && !keyInput.isPressed(74)) {
-            this.position.x += speed;
-            if (this.position.x > 1280 - 64)
-                this.position.x -= speed;
-        }
+        if (keyInput.isPressed(74) && !keyInput.isPressed(76))
+            this.velocity.x = -speed;
+        else if (keyInput.isPressed(76) && !keyInput.isPressed(74))
+            this.velocity.x = speed;
+        else
+            this.velocity.x = 0;
 
-        if (keyInput.isPressed(73) && !keyInput.isPressed(75)) {
-            this.position.y -= speed;
-            if (this.position.y < 0)
-                this.position.y += speed;
-        } else if (keyInput.isPressed(75) && !keyInput.isPressed(73)){
-            this.position.y += speed;
-            if (this.position.y > 720 - 64)
-                this.position.y -= speed;
-        }
+        if (keyInput.isPressed(73) && !keyInput.isPressed(75))
+            this.velocity.y = -speed;
+        else if (keyInput.isPressed(75) && !keyInput.isPressed(73))
+            this.velocity.y = speed;
+        else
+            this.velocity.y = 0;
+
+
+        this.position.x += this.velocity.x + this.player.velocity.x;
+        if (this.position.x < 0 || this.position.x > 1280 - 64)
+            this.position.x -= this.velocity.x + this.player.velocity.x;
+
+        this.position.y += this.velocity.y + this.player.velocity.y;
+        if (this.position.y < 0 || this.position.y > 720 - 64)
+            this.position.y -= this.velocity.y + this.player.velocity.y;
 
     };
 

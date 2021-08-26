@@ -18,7 +18,7 @@ export class Player extends GameObject<ObjectIds> implements PhysicsObject {
     public constructor (gameEngine: GameEngine) {
         super(gameEngine, ObjectIds.Player);
 
-        this.position = new Vector2d(640, 720 - 64);
+        this.position = new Vector2d(0, 0);
         this.velocity = new Vector2d(0, 0);
 
         this.direction = 'right';
