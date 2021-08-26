@@ -10,19 +10,14 @@ export class Scope extends GameObject<ObjectIds> {
 
     private position: Vector2d;
 
-    private direction: 'left' | 'right';
-    private sprites: {[key: string]: Sprite};
+    private sprite: Sprite;
 
     public constructor (gameEngine: GameEngine) {
         super(gameEngine, ObjectIds.Scope);
 
         this.position = new Vector2d(640, 300);
 
-        this.direction = 'right';
-        this.sprites = {
-            left: new Sprite('assets/player-left.png'),
-            right: new Sprite('assets/player-right.png')
-        }
+        this.sprite = new Sprite('assets/scope.png');
     }
 
     public tick = (deltaT: number) => {
@@ -61,12 +56,14 @@ export class Scope extends GameObject<ObjectIds> {
         //     this.position.x, this.position.y
         // );
 
-        graphics.getContext().fillStyle = new Color(255, 255, 0).toString();
-        graphics.getContext().fillRect(this.position.x, this.position.y, 64, 64);
-
+        // graphics.getContext().fillStyle = new Color(255, 255, 0).toString();
+        // graphics.getContext().fillRect(this.position.x, this.position.y, 64, 64);
+        
         // graphics.getContext().fillStyle = new Color(80, 80, 80).toString();
         // graphics.getContext().fillRect(this.position.x + 24, this.position.y - 16, 16, 64);
-
+        
+        graphics.getContext().imageSmoothingEnabled = false;
+        graphics.getContext().drawImage(this.sprite.getImage(), this.position.x, this.position.y, 64, 64);
 
     };
 
